@@ -35,9 +35,9 @@ public class SyncCommand implements CommandMarker {
 					"node" }, mandatory = true, help = "The node to copy, e.g. /test/node") final String node,
 			@CliOption(key = {
 					"overwrite" }, mandatory = false, unspecifiedDefaultValue = "false", help = "If overwrite exist value") final boolean overwrite) {
-		try (CuratorFramework sourceClient = CuratorFrameworkFactory.newClient(source, new RetryOneTime(1))) {
+		try (CuratorFramework sourceClient = CuratorFrameworkFactory.newClient(source, new RetryOneTime(1000))) {
 			sourceClient.start();
-			try (CuratorFramework targetClient = CuratorFrameworkFactory.newClient(target, new RetryOneTime(1))) {
+			try (CuratorFramework targetClient = CuratorFrameworkFactory.newClient(target, new RetryOneTime(1000))) {
 				targetClient.start();
 				try {
 					Stat stat = sourceClient.checkExists().forPath(node);

@@ -24,7 +24,7 @@ public class BasicCommand implements CommandMarker {
 			@CliOption(key = { "zk",
 					"zookeeper" }, mandatory = true, help = "Zookeeper address, e.g. 127.0.0.1:2181") final String zk,
 			@CliOption(key = { "node" }, mandatory = true, help = "Zookeeper node, e.g. /test/abc") final String node) {
-		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1))) {
+		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1000))) {
 			client.start();
 			try {
 				if (client.checkExists().forPath(node) != null) {
@@ -47,7 +47,7 @@ public class BasicCommand implements CommandMarker {
 			@CliOption(key = { "zk",
 					"zookeeper" }, mandatory = true, help = "Zookeeper address, e.g. 127.0.0.1:2181") final String zk,
 			@CliOption(key = { "node" }, mandatory = true, help = "Zookeeper node, e.g. /test/abc") final String node) {
-		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1))) {
+		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1000))) {
 			client.start();
 			try {
 				if (client.checkExists().forPath(node) != null) {
@@ -70,7 +70,7 @@ public class BasicCommand implements CommandMarker {
 			@CliOption(key = { "zk",
 					"zookeeper" }, mandatory = true, help = "Zookeeper address, e.g. 127.0.0.1:2181") final String zk,
 			@CliOption(key = { "node" }, mandatory = true, help = "Zookeeper node, e.g. /test/abc") final String node) {
-		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1))) {
+		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1000))) {
 			client.start();
 			try {
 				if (client.checkExists().forPath(node) != null) {
@@ -91,7 +91,7 @@ public class BasicCommand implements CommandMarker {
 					"zookeeper" }, mandatory = true, help = "Zookeeper address, e.g. 127.0.0.1:2181") final String zk,
 			@CliOption(key = { "node" }, mandatory = true, help = "Zookeeper node, e.g. /test/abc") final String node,
 			@CliOption(key = { "value" }, mandatory = true, help = "node value") final String value) {
-		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1))) {
+		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1000))) {
 			client.start();
 			try {
 				client.setData().forPath(node, value.getBytes());
@@ -108,7 +108,7 @@ public class BasicCommand implements CommandMarker {
 					"zookeeper" }, mandatory = true, help = "Zookeeper address, e.g. 127.0.0.1:2181") final String zk,
 			@CliOption(key = { "node" }, mandatory = true, help = "Zookeeper node, e.g. /test/abc") final String node,
 			@CliOption(key = { "value" }, mandatory = true, help = "node value") final String value) {
-		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1))) {
+		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1000))) {
 			client.start();
 			try {
 				client.create().creatingParentsIfNeeded().forPath(node, value.getBytes());

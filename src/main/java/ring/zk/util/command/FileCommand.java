@@ -41,7 +41,7 @@ public class FileCommand implements CommandMarker {
 
 		try {
 			final byte[] bytes = Files.toByteArray(f);
-			try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1))) {
+			try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1000))) {
 				client.start();
 				try {
 					if (client.checkExists().forPath(zknode) == null) {
@@ -70,7 +70,7 @@ public class FileCommand implements CommandMarker {
 
 		LOGGER.info("Download {}{} to {}", zk, zknode, file);
 
-		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1))) {
+		try (CuratorFramework client = CuratorFrameworkFactory.newClient(zk, new RetryOneTime(1000))) {
 			client.start();
 			try {
 				if (client.checkExists().forPath(zknode) != null) {

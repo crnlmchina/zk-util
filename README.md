@@ -10,9 +10,6 @@ java -jar zk-util.jar
 zk-util>help
 help
 
-* ! - Allows execution of operating system (OS) commands
-* // - Inline comment markers (start of line only)
-* ; - Inline comment markers (start of line only)
 * clear - Clears the console
 * clone - Clone data between zookeepers
 * cls - Clears the console
@@ -20,10 +17,12 @@ help
 * date - Displays the local date and time
 * delete - delete node and its all children
 * exit - Exits the shell
+* export - Export data with yml format
 * file download - Download file from zookeeper
 * file upload - Upload file to zookeeper
 * get - Get node value
 * help - List all commands usage
+* import - Import data from yml format
 * ls - list child nodes
 * quit - Exits the shell
 * script - Parses the specified resource file and executes its commands
@@ -75,5 +74,22 @@ file download --zk 192.168.5.99 --zknode /test/tfile --file /tmp/dfile
 Download 192.168.5.99/test/tfile to /tmp/dfile
 
 Done
+
+zk-util>export --zk 192.168.5.99 --basePath /test --file /tmp/test.yml
+export --zk 192.168.5.99 --basePath /test --file /tmp/test.yml
+Export node: /test
+Export node: /test/assembly.xml
+Export node: /test/tfile
+Export node: /test/author
+Done
+
+zk-util>import --zk 192.168.5.99 --basePath /test2 --file /tmp/test.yml
+import --zk 192.168.5.99 --basePath /test2 --file /tmp/test.yml
+Create node: /test2
+Create node: /test2/assembly.xml
+Create node: /test2/tfile
+Create node: /test2/author
+Done
+
 zk-util>
 ```
